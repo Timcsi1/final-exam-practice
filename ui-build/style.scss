@@ -20,21 +20,20 @@ $secondary: #145434;
 .material-icons.md-48 {
     font-size: 48px;
 }
-
-/* Rules for using icons as black on a light background. */
 .material-icons.md-dark {
     color: rgba(0, 0, 0, 0.54);
 }
 .material-icons.md-dark.md-inactive {
     color: rgba(0, 0, 0, 0.26);
 }
-/* Rules for using icons as white on a dark background. */
 .material-icons.md-light {
     color: rgba(255, 255, 255, 1);
 }
 .material-icons.md-light.md-inactive {
     color: rgba(255, 255, 255, 0.3);
 }
+
+
 body {
     background-color: $primary;
     font-family: "Space Grotesk", sans-serif;
@@ -102,8 +101,8 @@ header {
             height: 50px;
             font-size: 14px;
             position: absolute;
-            bottom:0;
-            right: 0;
+            bottom:-15px;
+            right: -15px;
             // z-index:2;
         }
         .text {
