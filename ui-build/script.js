@@ -82,8 +82,6 @@ beers.cards.forEach((e, index) => {
             <div class="text">${e.text}</div>
             <button>details</button>
         </div>
-
-
     `
     );
 });

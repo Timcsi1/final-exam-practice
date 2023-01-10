@@ -3,6 +3,7 @@ import React, { useState } from "react";
 function Character({ data, setData }) {
     const [showDetails, setShowDetails] = useState({});
     const [showMore, setShowMore] = useState({});
+    const [email, setEmail] = useState("");
 
     const handleClick1 = (index) => {
         // Use the spread operator to create a new object with the same properties as showMore
@@ -20,6 +21,23 @@ function Character({ data, setData }) {
         }));
     };
 
+    const handleSubmit = (event) => {
+        event.preventDefault();
+
+        // const emailRegex = /^[^@]+@[^@.]+\.[^@.]+$/;
+        // if (!emailRegex.test(email)) {
+        //     return;
+        // }
+
+        fetch("https://demoapi.com/api/series/newsletter", {
+            method: "POST",
+            body: JSON.stringify({ email }),
+            headers: { "Content-Type": "application/json" },
+        }).then((response) => {
+           console.log(response)
+        });
+    };
+
     console.log(data);
     return (
         <div>
@@ -27,27 +45,28 @@ function Character({ data, setData }) {
                 <div key={item.name}>
                     {item.name}
                     <button
-                    key={index}
+                        key={index}
                         onClick={() => {
                             handleClick(item);
-                            handleClick1(index)
-                            }}
+                            handleClick1(index);
+                        }}
                     >
-                        {showMore[index] ? 'Show Less' : 'Show More'}
+                        {showMore[index] ? "Show Less" : "Show More"}
                     </button>
                     {showDetails[item.name] && <div>{item.details}</div>}
                 </div>
             ))}
-            {/* {data.map((e, index) => (
-                <div key={index}>
-                <>
-                    {e.name}
-                    <button onClick={handleClick}>More info</button>
-                    {showText && <div>{e.details}</div>}
-                </>
-                
-                </div>
-            ))} */}
+
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="email">Email:</label>
+                <input
+                    type="email"
+                    id="email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <button type="submit">Sign up</button>
+            </form>
         </div>
     );
 }
